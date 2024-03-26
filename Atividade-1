@@ -1,1 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
 
+int compare(const void *a, const void *b){
+    return (*(int*)a-*(int*)b);
+}
+
+int main(){
+    int n;
+
+    printf("Digite o numero de elementos: ");
+    scanf("%d", &n);
+
+    if(n<=0){
+        printf("Nenhum numero foi inserido. Encerrar o programa.\n");
+        return 0;
+    }
+
+int *numbers = (int*)malloc(n*sizeof(int));
+
+    printf("Digite os numeros inteiros separados por espaço:");
+    for (int i=0; i<n; i++){
+        scanf("%d", &numbers[i]);
+    }
+
+int sum = 0;
+for (int i=0; i<n; i++){
+    sum += numbers[i];
+}
+
+float average = (float)sum /n;
+
+int min_number = numbers[0];
+for(int i=1; i<n; i++){
+    if(numbers[i] < min_number){
+        min_number = numbers[i];
+    }
+}
+
+int max_number = numbers[0];
+for (int i=1; i<n; i++){
+    if(numbers[i] > max_number){
+        max_number = numbers[i];
+    }
+}
+
+qsort(numbers, n, sizeof(int), compare);
+
+printf("Quantidade de numeros recebidos: %d\n", n);
+printf("Valor medio dos numeros: %.2f\n", average);
+printf("Menor numero: %d\n", min_number);
+printf("Maior numero: %d\n", max_number);
+printf("Lista de numeros em ordem crescente:");
+for (int i=0; i<n; i++){
+    printf("%d", numbers[i]);
+}
+ 
+
+ free(numbers);
+
+
+    exit(0);
+}
