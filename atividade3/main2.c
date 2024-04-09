@@ -9,13 +9,13 @@ int comparar(const void *a, const void *b) {
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         printf("Uso: %s arquivo_entrada\n", argv[0]);
-        return 1;
+        exit (1);
     }
 
     FILE *arquivo_entrada = fopen(argv[1], "r");
     if (arquivo_entrada == NULL) {
         printf("Não foi possível abrir o arquivo de entrada.\n");
-        return 1;
+        exit (1);
     }
 
     int *numeros = NULL;
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     numeros = (int *)malloc(capacidade * sizeof(int));
     if (numeros == NULL) {
         printf("Erro de alocação de memória.\n");
-        return 1;
+        exit (1);
     }
 
    
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
             numeros = (int *)realloc(numeros, capacidade * sizeof(int));
             if (numeros == NULL) {
                 printf("Erro de realocação de memória.\n");
-                return 1;
+                exit (1);
             }
         }
         numeros[tamanho++] = num;
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     FILE *arquivo_saida = fopen("saida.txt", "w");
     if (arquivo_saida == NULL) {
         printf("Não foi possível abrir o arquivo de saída.\n");
-        return 1;
+        exit (1);
     }
 
    
