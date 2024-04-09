@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct Ponto{
+    int x;
+    int y;
+
+}Ponto;
+
 int main (int argc, char* argv[]){
 
     int a = 2;
@@ -28,6 +34,10 @@ int main (int argc, char* argv[]){
     printf("&p = %p \t p = %p \t *p = %d\n",&p, p, *p);
     printf("&P = %p \t p = %p \t *p = %d\n", &p, &p[1], p[1]);
 
+    Ponto A;
+    A.x = 4;
+    A.y = 4;
+    printf("A(%d, %d)\n", A.x, A.y);
 
 
     exit(0);
