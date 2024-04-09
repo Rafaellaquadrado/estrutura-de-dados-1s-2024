@@ -1,67 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int main(int argc, char* argv[]) {
 
-int comparar(const void *a, const void *b) {
-    return (*(int *)a - *(int *)b);
-}
+    FILE *fp = fopen(argv[1], "r");
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        printf("Uso: %s arquivo_entrada\n", argv[0]);
-        exit (1);
+    if(fp = NULL){
+        printf("ERRO ao abrir arquivo %s\n", argv[1]);
+        exit(1);
     }
 
-    FILE *arquivo_entrada = fopen(argv[1], "r");
-    if (arquivo_entrada == NULL) {
-        printf("Não foi possível abrir o arquivo de entrada.\n");
-        exit (1);
+    int i;
+    int qtd_n = 0;
+    int *vetor_n;
+    while(fscanf(fp, "%d\n", &i) != EOF){
+        qtd_n++;
     }
 
-    int *numeros = NULL;
-    int tamanho = 0;
-    int capacidade = 10; 
+    vetor_n = malloc(sizeof(int)*qtd_n);
 
-    numeros = (int *)malloc(capacidade * sizeof(int));
-    if (numeros == NULL) {
-        printf("Erro de alocação de memória.\n");
-        exit (1);
+    rewind(fp);
+    i = 0;
+    while(fscanf(fp, "%d\n", &vetor_n[i]) != EOF){
+        i++;
     }
-
    
-    int num;
-    while (fscanf(arquivo_entrada, "%d", &num) == 1) {
-        if (tamanho >= capacidade) {
-            capacidade *= 2; 
-            numeros = (int *)realloc(numeros, capacidade * sizeof(int));
-            if (numeros == NULL) {
-                printf("Erro de realocação de memória.\n");
-                exit (1);
-            }
-        }
-        numeros[tamanho++] = num;
+    fclose(fp);
+
+    bubble_sort(vetor_n, qtd_n);
+
+    FILE* arq_saida = fopen("saida.txt", "w");
+    if(arq_saida == NULL){
+        printf("Erro ao abrir arquivo saida.txt");
+        exit(1);
     }
 
-    fclose(arquivo_entrada);
-
-
-    qsort(numeros, tamanho, sizeof(int), comparar);
-
-    FILE *arquivo_saida = fopen("saida.txt", "w");
-    if (arquivo_saida == NULL) {
-        printf("Não foi possível abrir o arquivo de saída.\n");
-        exit (1);
+    for(i = 0; i < qtd_n; i++){
+        printf("%d", vetor_n[i]);
     }
-
-   
-    for (int i = 0; i < tamanho; i++) {
-        fprintf(arquivo_saida, "%d\n", numeros[i]);
-    }
-
-    fclose(arquivo_saida);
-    free(numeros);
-
-    printf("Arquivo de saída gerado com sucesso.\n");
 
     exit(0);
 }
