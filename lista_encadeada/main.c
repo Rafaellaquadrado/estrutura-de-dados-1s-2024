@@ -4,10 +4,26 @@
 
 int main(int argc, char* argv[]){
 
-    No* n1 = no("A", NULL);
-    No* n2 = no("B", NULL);
+    No* H = no('A', no('B', no('C', no('D', no('E', no('F', NULL))))));
+    No* Hc = copiar_lista(H);
+    
 
-    printf("n1 = %d \t n2 = %c", n1->valor, n2->valor);
+    imprimir_lista(H);
+    printf("\n copia\n");
+    imprimir_lista(Hc);
 
+    H->proximo_no->valor = 'X';
+    Hc->valor = 'U';
+
+    printf("\n");
+    imprimir_lista(H);
+    printf("\n copia\n");
+    imprimir_lista(Hc);
+
+    liberar_lista(Hc);
+
+    printf("\n qtd = %d", quantidade_nos(H));
+    printf("\n copia qtd = %d", quantidade_nos(Hc));
+    
     exit(0);
 }
