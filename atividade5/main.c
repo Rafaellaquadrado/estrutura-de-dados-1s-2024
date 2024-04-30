@@ -1,25 +1,23 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "lista_circular.h"
 
-int main() {
-    No* lista = NULL;
+int main(int argc, char* argv[]){
 
-    inserir_no(&lista, 'A');
-    inserir_no(&lista, 'B');
-    inserir_no(&lista, 'C');
-    inserir_no(&lista, 'D');
+    No* H = no('A', NULL);
+    inserir_no(H, 'B');
+    inserir_no(H, 'C');
 
-    printf("Lista circular: ");
-    imprimir_lista(lista);
+    imprimir_lista(H);
     printf("\n");
 
-    remover_no(&lista, 'B');
-
-    printf("Lista circular após remover o nó 'B': ");
-    imprimir_lista(lista);
+    remover_no(H, 'B');
+    imprimir_lista(H);
     printf("\n");
 
-    liberar_lista(&lista);
+    remover_no(H, 'C');
+    imprimir_lista(H);
+    printf("\n");
 
-    return 0;
+    exit(0);
 }
