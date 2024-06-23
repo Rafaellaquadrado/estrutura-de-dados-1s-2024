@@ -9,7 +9,7 @@ struct No {
 };
 
 
-struct No* createNode(int data) {
+struct No* createNo(int data) {
     struct No* novoNo = (struct Node*)malloc(sizeof(struct No));
     novoNo->data = data;
     novoNo->left = NULL;
@@ -18,7 +18,7 @@ struct No* createNode(int data) {
 }
 
 
-struct No* insertNode(struct No* root, int data) {
+struct No* insertNo(struct No* root, int data) {
     if (root == NULL) {
         return createNo(data);
     }
