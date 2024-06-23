@@ -10,11 +10,11 @@ struct No {
 
 
 struct No* createNo(int data) {
-    struct No* novoNo = (struct Node*)malloc(sizeof(struct No));
+    struct No* novoNo = (struct No*)malloc(sizeof(struct No));
     novoNo->data = data;
     novoNo->left = NULL;
     novoNo->right = NULL;
-    return newNode;
+    return novoNo;
 }
 
 
@@ -58,7 +58,7 @@ void postOrderTraversal(struct No* root) {
 }
 
 
-struct No* searchNode(struct No* root, int data) {
+struct No* searchNo(struct No* root, int data) {
     if (root == NULL || root->data == data) {
         return root;
     }
@@ -69,8 +69,8 @@ struct No* searchNode(struct No* root, int data) {
 }
 
 
-struct No* findMinNo(struct No* node) {
-    struct No* current = no;
+struct No* findMinNo(struct No* No) {
+    struct No* current = No;
     while (current && current->left != NULL) {
         current = current->left;
     }
@@ -78,7 +78,7 @@ struct No* findMinNo(struct No* node) {
 }
 
 
-struct No* deleteNode(struct No* root, int data) {
+struct No* deleteNo(struct No* root, int data) {
     if (root == NULL) {
         return root;
     }
@@ -105,7 +105,7 @@ struct No* deleteNode(struct No* root, int data) {
 
 int main() {
     struct No* root = NULL;
-    root = insertNode(root, 50);
+    root = insertNo(root, 50);
     insertNo(root, 30);
     insertNo(root, 20);
     insertNo(root, 40);
